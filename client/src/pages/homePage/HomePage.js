@@ -4,6 +4,9 @@ import { StyledBidButton, StyledHomePageContainer } from './HomePage.styles';
 import HomePageApi from './HomePageApi';
 import { getLastItemCreated } from './helpers/helpers';
 import InputLabel from '../../components/inputLabel/InputLable';
+import { MessagesChannel } from '../../App';
+
+import { ActionCable } from 'react-actioncable-provider';
 
 const HomePage = () => {
 	const [item, setItem] = useState({
@@ -13,6 +16,12 @@ const HomePage = () => {
 		id: undefined
 	});
 	const [newBidValue, setNewBid] = useState(0);
+
+	useEffect(() => {
+		console.log(MessagesChannel, 'MessagesChannel');
+		MessagesChannel.received = (data) => console.log(data, 'DATAAA');
+		//console.log(ActionCableProvider, 'ActionCable');
+	}, []);
 
 	const fetchAndSetItem = async () => {
 		try {
@@ -45,16 +54,23 @@ const HomePage = () => {
 		} catch (error) {}
 	};
 
+	const handleReceived = (message) => {
+		console.log(message, 'message');
+	};
+
 	return (
-		<StyledHomePageContainer>
-			<CurrentItem item={item} setItem={setItem} />
-			<InputLabel
-				value={newBidValue}
-				onChange={(e) => setNewBid(e.target.value)}
-				label="insert your bid"
-			/>
-			<StyledBidButton onClick={updateCurrentPrice}>Bid</StyledBidButton>
-		</StyledHomePageContainer>
+		<>
+			{/*<ActionCable channel={'items_channel'} onReceived={handleReceived} />*/}
+			<StyledHomePageContainer>
+				<CurrentItem item={item} setItem={setItem} />
+				<InputLabel
+					value={newBidValue}
+					onChange={(e) => setNewBid(e.target.value)}
+					label="insert your bid"
+				/>
+				<StyledBidButton onClick={updateCurrentPrice}>Bid</StyledBidButton>
+			</StyledHomePageContainer>
+		</>
 	);
 };
 

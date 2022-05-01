@@ -22,6 +22,9 @@ class API::V1::ItemsController < ApplicationController
     else
       render json: @item.errors, status: :unprocessable_entity
     end
+
+    ActionCable.server.broadcast 'items_channel', @item
+
   end
 
   # PATCH/PUT /items/1
