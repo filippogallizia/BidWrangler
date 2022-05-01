@@ -25,5 +25,3 @@ export const StyledCurrentPriceLabel = styled.p`
 export const StyledCurrentPrice = styled.p`
 	margin: 0px;
 `;
-
-export const StyledBidButton = styled(BtnPrimary)``;

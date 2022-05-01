@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       #resources :users,  only: [:index, :create, :destroy, :update]
       resources :users, :defaults => { :format => :json }
+      resources :items, :defaults => { :format => :json }
+
+
 
     end
   end

@@ -4,21 +4,30 @@ import {
 	StyledItemName,
 	StyledCurrentPriceLabel,
 	StyledCurrentPrice,
-	StyledPriceContainer,
-	StyledBidButton
+	StyledPriceContainer
 } from './CurrentItem.styles';
 
-const CurrentItem = () => {
+const CurrentItem = ({ item, setItem }) => {
+	const ITEM_IS_LISTED = item.name && item.ask_price;
+
+	const itemName = ITEM_IS_LISTED
+		? item.name
+		: 'There is not a listed item yet';
+
 	return (
 		<StyledCurrentItemContainer>
-			<StyledItemName>ItemName</StyledItemName>
+			<StyledItemName>Item name: {itemName.toUpperCase()}</StyledItemName>
 
-			<StyledPriceContainer>
-				<StyledCurrentPriceLabel>Current Price</StyledCurrentPriceLabel>
-				<StyledCurrentPrice>100$</StyledCurrentPrice>
-			</StyledPriceContainer>
-
-			<StyledBidButton>Bid</StyledBidButton>
+			{ITEM_IS_LISTED && (
+				<>
+					<StyledPriceContainer>
+						<StyledCurrentPriceLabel>
+							Current Price: {item.current_price}$
+						</StyledCurrentPriceLabel>
+						<StyledCurrentPrice></StyledCurrentPrice>
+					</StyledPriceContainer>
+				</>
+			)}
 		</StyledCurrentItemContainer>
 	);
 };

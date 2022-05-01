@@ -4,11 +4,16 @@ import {
 	StyledNavButtonsContainer,
 	StyledNavButton
 } from './NavBar.styles';
+import { useMatch } from 'react-router-dom';
+
 import { useNavigate } from 'react-router-dom';
 import RotuesPath from '../../shared/routes/RotuesPath';
 
 const NavBar = () => {
 	const navigate = useNavigate();
+	const isHomePage = useMatch(RotuesPath.HOME);
+	const isListPage = useMatch(RotuesPath.LIST_ITEM);
+	const isLoginPage = useMatch(RotuesPath.LOGIN);
 
 	return (
 		<StyledNavBarContainer>
