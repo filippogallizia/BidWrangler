@@ -23,7 +23,6 @@ class API::V1::ItemsController < ApplicationController
       render json: @item.errors, status: :unprocessable_entity
     end
 
-    ActionCable.server.broadcast 'items_channel', @item
 
   end
 
@@ -31,6 +30,7 @@ class API::V1::ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       render json: @item
+      ActionCable.server.broadcast 'items_channel', @item
     else
       render json: @item.errors, status: :unprocessable_entity
     end

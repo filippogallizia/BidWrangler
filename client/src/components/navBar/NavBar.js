@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	StyledNavBarContainer,
 	StyledNavButtonsContainer,
@@ -8,9 +8,11 @@ import { useMatch } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';
 import RotuesPath from '../../shared/routes/RotuesPath';
+import { useUserContext } from '../../userContext/useUserContext';
 
 const NavBar = () => {
 	const navigate = useNavigate();
+	const { user } = useUserContext();
 	const isHomePage = useMatch(RotuesPath.HOME);
 	const isListPage = useMatch(RotuesPath.LIST_ITEM);
 	const isLoginPage = useMatch(RotuesPath.LOGIN);
@@ -28,6 +30,7 @@ const NavBar = () => {
 					Login as Bider
 				</StyledNavButton>
 			</StyledNavButtonsContainer>
+			{user && user}
 		</StyledNavBarContainer>
 	);
 };

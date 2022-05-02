@@ -15,7 +15,7 @@ export const StyledItemName = styled.p`
 export const StyledPriceContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 0.3rem;
+	gap: 1rem;
 `;
 
 export const StyledCurrentPriceLabel = styled.p`

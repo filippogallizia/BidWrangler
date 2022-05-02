@@ -5,12 +5,15 @@ import {
 } from './ListItemPageStyles';
 
 import ListItemPageApi from './ListItemPageApi';
+import { useNavigate } from 'react-router-dom';
 
 import InputLabel from '../../components/inputLabel/InputLable';
+import RotuesPath from '../../shared/routes/RotuesPath';
 
 const ListItemPage = () => {
-	const [itemInfo, setItemInfo] = useState({ name: '', ask_price: 0 });
+	const [itemInfo, setItemInfo] = useState({ name: '', ask_price: undefined });
 	const buttonIsDisabled = !itemInfo.name || !itemInfo.ask_price;
+	const navigate = useNavigate();
 
 	const handleOnChangeName = (e) => {
 		setItemInfo((prev) => ({
@@ -28,22 +31,18 @@ const ListItemPage = () => {
 
 	const handleSubmit = async () => {
 		try {
-			const response = await ListItemPageApi.createItem(
+			await ListItemPageApi.createItem(
 				itemInfo.name,
 				Number(itemInfo.ask_price)
 			);
-			console.log(response, 'res');
-		} catch (error) {
-			console.log(error, 'rrooorr');
-		}
+			navigate(RotuesPath.HOME);
+		} catch (error) {}
 	};
-
-	console.log(itemInfo, 'itemfino');
 
 	return (
 		<StyledListItemPageContainer>
 			<InputLabel
-				label="name"
+				label="Item name"
 				value={itemInfo.name}
 				onChange={handleOnChangeName}
 			/>

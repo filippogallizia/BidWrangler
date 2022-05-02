@@ -8,3 +8,8 @@ export const StyledHomePageContainer = styled.div`
 	flex-direction: column;
 	gap: 2rem;
 `;
+
+export const StyledErrorMessage = styled.p`
+	color: ${({ theme }) =>
+		theme.default.colors.feedbackColors.negative.negative02};
+`;

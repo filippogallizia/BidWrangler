@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiUrl } from '../../shared/environment/environment';
+import { apiUrl } from '../../shared/constant/environment';
 
 class HomePageApi {
 	async updateCurrentPrice(id, current_price) {

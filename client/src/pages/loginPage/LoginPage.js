@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { StyledLoginContainer, StyledSignInButton } from './LoginPage.styles';
-import LoginPageApi from './LoginPageApi';
+import { setUserInStorage } from './helpers/helpers';
 
 import InputLabel from '../../components/inputLabel/InputLable';
+import { useNavigate } from 'react-router-dom';
+import RotuesPath from '../../shared/routes/RotuesPath';
+import { useUserContext } from '../../userContext/useUserContext';
 
 const LoginPage = () => {
 	const [biderName, setBiderName] = useState('');
-	console.log(biderName, 'biderNmae');
-	const handleSignIn = async () => {
-		await LoginPageApi.createUser(biderName);
-		await LoginPageApi.getUser();
+	const navigate = useNavigate();
+	const { setUser } = useUserContext();
+
+	const handleSignIn = () => {
+		setUserInStorage(biderName);
+		setUser(biderName);
+		navigate(RotuesPath.HOME);
 	};
 
 	return (

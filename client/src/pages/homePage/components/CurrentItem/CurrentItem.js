@@ -16,7 +16,7 @@ const CurrentItem = ({ item, setItem }) => {
 
 	return (
 		<StyledCurrentItemContainer>
-			<StyledItemName>Item name: {itemName.toUpperCase()}</StyledItemName>
+			<StyledItemName>{itemName.toUpperCase()}</StyledItemName>
 
 			{ITEM_IS_LISTED && (
 				<>
@@ -24,7 +24,10 @@ const CurrentItem = ({ item, setItem }) => {
 						<StyledCurrentPriceLabel>
 							Current Price: {item.current_price}$
 						</StyledCurrentPriceLabel>
-						<StyledCurrentPrice></StyledCurrentPrice>
+
+						<StyledCurrentPriceLabel>
+							Ask Price: {item.ask_price}$
+						</StyledCurrentPriceLabel>
 					</StyledPriceContainer>
 				</>
 			)}
