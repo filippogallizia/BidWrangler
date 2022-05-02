@@ -26,7 +26,7 @@ const LoginPage = () => {
 			<InputLabel
 				value={biderName}
 				onChange={(e) => setBiderName(e.target.value)}
-				label="name"
+				label="Name"
 			/>
 
 			<StyledSignInButton

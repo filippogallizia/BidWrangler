@@ -21,10 +21,10 @@ const CurrentItem = ({ item }) => {
 				)}
 
 				<StyledInfoAndLabel>
-					Current Price: {item.current_price}$
+					Current Price: {item.current_price} $
 				</StyledInfoAndLabel>
 
-				<StyledInfoAndLabel>Ask Price: {item.ask_price}$</StyledInfoAndLabel>
+				<StyledInfoAndLabel>Ask Price: {item.ask_price} $</StyledInfoAndLabel>
 			</StyledInfosContainer>
 		</StyledCurrentItemContainer>
 	);
