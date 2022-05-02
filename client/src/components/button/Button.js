@@ -8,7 +8,6 @@ export const ButtonStyled = styled.button`
 		theme.default.global.fonts.fontsWeight.semibold};
 	letter-spacing: ${({ theme }) => theme.default.global.letterSpacing.medium};
 	line-height: ${({ theme }) => theme.default.global.lineHeight.medium};
-	background-color: red;
 	border: none;
 `;
 

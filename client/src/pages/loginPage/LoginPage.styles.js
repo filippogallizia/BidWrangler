@@ -12,13 +12,13 @@ export const StyledBiderName = styled.p`
 		theme.default.global.fonts.fontsWeight.semibold};
 `;
 
-export const StyledPriceContainer = styled.div`
+export const StyledInfosContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
 `;
 
-export const StyledCurrentPriceLabel = styled.p`
+export const StyledInfoAndLabel = styled.p`
 	margin: 0px;
 `;
 

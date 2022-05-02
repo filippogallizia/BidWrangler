@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import BtnPrimary from '../../../../components/button/bntPrimary/BtnPrimary';
 
 export const StyledCurrentItemContainer = styled.div`
 	display: flex;
@@ -8,17 +7,19 @@ export const StyledCurrentItemContainer = styled.div`
 `;
 
 export const StyledItemName = styled.p`
+	font-size: ${({ theme }) => theme.default.global.fonts.fontSize.xxl};
 	font-weight: ${({ theme }) =>
 		theme.default.global.fonts.fontsWeight.semibold};
 `;
 
-export const StyledPriceContainer = styled.div`
+export const StyledInfosContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 `;
 
-export const StyledCurrentPriceLabel = styled.p`
+export const StyledInfoAndLabel = styled.p`
+	font-size: ${({ theme }) => theme.default.global.fonts.fontSize.lg};
 	margin: 0px;
 `;
 

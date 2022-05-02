@@ -9,7 +9,7 @@ export const StyledListItemPageContainer = styled.div`
 export const StyledInputItemName = styled.input``;
 export const StyledInputAskPrice = styled.input``;
 
-export const StyledPriceContainer = styled.div`
+export const StyledInfosContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;

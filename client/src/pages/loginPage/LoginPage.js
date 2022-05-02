@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyledLoginContainer, StyledSignInButton } from './LoginPage.styles';
 import { setUserInStorage } from './helpers/helpers';
 

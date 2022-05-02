@@ -9,16 +9,8 @@ import {
 	StyledlMainContentContainer
 } from './Router.styles';
 import Header from '../components/header/Header';
-import ActionCable from 'actioncable';
 
-import {
-	useLocation,
-	Routes,
-	Route,
-	Navigate,
-	BrowserRouter,
-	Outlet
-} from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom';
 
 const Router = () => {
 	return (

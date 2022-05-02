@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import Button from '../../components/button/Button';
-import BtnSecondary from '../button/btnSecondary/BtnSecondary';
 
 export const StyledNavBarContainer = styled.div`
 	display: flex;
@@ -12,4 +10,19 @@ export const StyledNavButtonsContainer = styled.div`
 	gap: 3rem;
 `;
 
-export const StyledNavButton = styled(BtnSecondary)``;
+export const StyledUserName = styled.p`
+	font-weight: ${({ theme }) => theme.default.global.fonts.fontsWeight.bold};
+`;
+
+//export const StyledNavButton = styled(BtnSecondary)``;
+export const StyledNavButton = styled.p`
+	border-bottom: ${({ isSelected, theme }) =>
+		isSelected &&
+		`1px solid ${theme.default.colors.brandColors.secondary.secondaryPure}`};
+	cursor: pointer;
+
+	&:hover {
+		color: ${({ theme }) =>
+			theme.default.colors.brandColors.secondary.secondaryPure};
+	}
+`;

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import {
 	StyledNavBarContainer,
 	StyledNavButtonsContainer,
-	StyledNavButton
+	StyledNavButton,
+	StyledUserName
 } from './NavBar.styles';
 import { useMatch } from 'react-router-dom';
 
@@ -20,17 +21,27 @@ const NavBar = () => {
 	return (
 		<StyledNavBarContainer>
 			<StyledNavButtonsContainer>
-				<StyledNavButton onClick={() => navigate(RotuesPath.HOME)}>
+				<StyledNavButton
+					isSelected={isHomePage}
+					onClick={() => navigate(RotuesPath.HOME)}
+				>
 					Home
 				</StyledNavButton>
-				<StyledNavButton onClick={() => navigate(RotuesPath.LIST_ITEM)}>
+				<StyledNavButton
+					isSelected={isListPage}
+					onClick={() => navigate(RotuesPath.LIST_ITEM)}
+				>
 					List item
 				</StyledNavButton>
-				<StyledNavButton onClick={() => navigate(RotuesPath.LOGIN)}>
+				<StyledNavButton
+					isSelected={isLoginPage}
+					onClick={() => navigate(RotuesPath.LOGIN)}
+				>
 					Login as Bider
 				</StyledNavButton>
 			</StyledNavButtonsContainer>
-			{user && user}
+
+			{user && <StyledUserName>{user.toUpperCase()}</StyledUserName>}
 		</StyledNavBarContainer>
 	);
 };

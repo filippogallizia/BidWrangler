@@ -2,35 +2,24 @@ import React from 'react';
 import {
 	StyledCurrentItemContainer,
 	StyledItemName,
-	StyledCurrentPriceLabel,
-	StyledCurrentPrice,
-	StyledPriceContainer
+	StyledInfoAndLabel,
+	StyledInfosContainer
 } from './CurrentItem.styles';
 
-const CurrentItem = ({ item, setItem }) => {
-	const ITEM_IS_LISTED = item.name && item.ask_price;
-
-	const itemName = ITEM_IS_LISTED
-		? item.name
-		: 'There is not a listed item yet';
+const CurrentItem = ({ item }) => {
+	const itemName = item.name;
 
 	return (
 		<StyledCurrentItemContainer>
 			<StyledItemName>{itemName.toUpperCase()}</StyledItemName>
 
-			{ITEM_IS_LISTED && (
-				<>
-					<StyledPriceContainer>
-						<StyledCurrentPriceLabel>
-							Current Price: {item.current_price}$
-						</StyledCurrentPriceLabel>
+			<StyledInfosContainer>
+				<StyledInfoAndLabel>
+					Current Price: {item.current_price}$
+				</StyledInfoAndLabel>
 
-						<StyledCurrentPriceLabel>
-							Ask Price: {item.ask_price}$
-						</StyledCurrentPriceLabel>
-					</StyledPriceContainer>
-				</>
-			)}
+				<StyledInfoAndLabel>Ask Price: {item.ask_price}$</StyledInfoAndLabel>
+			</StyledInfosContainer>
 		</StyledCurrentItemContainer>
 	);
 };

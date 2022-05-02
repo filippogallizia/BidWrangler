@@ -10,6 +10,13 @@ export const StyledHomePageContainer = styled.div`
 `;
 
 export const StyledErrorMessage = styled.p`
+	margin: 0px;
 	color: ${({ theme }) =>
 		theme.default.colors.feedbackColors.negative.negative02};
+`;
+
+export const StyledInputAndErrorContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 `;

@@ -3,11 +3,12 @@ import CurrentItem from './components/CurrentItem/CurrentItem';
 import {
 	StyledBidButton,
 	StyledHomePageContainer,
-	StyledErrorMessage
+	StyledErrorMessage,
+	StyledInputAndErrorContainer
 } from './HomePage.styles';
 import { updateUserInStorage } from '../loginPage/helpers/helpers';
 import HomePageApi from './HomePageApi';
-import { fetchAndSetItem, handleSetItem } from './helpers/helpers';
+import { handleSetItem, fetchAndSetItem } from './helpers/helpers';
 import InputLabel from '../../components/inputLabel/InputLable';
 import { ItemsChannel } from '../../App';
 
@@ -18,7 +19,7 @@ const HomePage = () => {
 		current_price: '',
 		id: undefined
 	});
-	const [newBidValue, setNewBid] = useState(0);
+	const [newBidValue, setNewBid] = useState();
 
 	const IS_BID_POSSIBLE = newBidValue && newBidValue > item.current_price;
 
@@ -29,6 +30,10 @@ const HomePage = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		setNewBid(item.current_price + 1);
+	}, [item.current_price]);
+
 	const updateCurrentPrice = async () => {
 		try {
 			await HomePageApi.updateCurrentPrice(item.id, newBidValue);
@@ -38,27 +43,37 @@ const HomePage = () => {
 	};
 
 	return (
-		<>
-			<StyledHomePageContainer>
-				<CurrentItem item={item} setItem={setItem} />
-				<InputLabel
-					value={newBidValue}
-					onChange={(e) => setNewBid(e.target.value)}
-					label="insert your bid"
-				/>
-				{!IS_BID_POSSIBLE && (
-					<StyledErrorMessage>
-						Value must be bigger then current price
-					</StyledErrorMessage>
-				)}
-				<StyledBidButton
-					disabled={!IS_BID_POSSIBLE}
-					onClick={updateCurrentPrice}
-				>
-					Bid
-				</StyledBidButton>
-			</StyledHomePageContainer>
-		</>
+		<StyledHomePageContainer>
+			{!item && 'no item yet'}
+
+			{item && (
+				<>
+					<CurrentItem item={item} />
+
+					<StyledInputAndErrorContainer>
+						<InputLabel
+							value={newBidValue}
+							onChange={(e) => setNewBid(e.target.value)}
+							label="Insert your bid"
+							inputType="number"
+						/>
+
+						{!IS_BID_POSSIBLE && (
+							<StyledErrorMessage>
+								Value must be bigger then current price
+							</StyledErrorMessage>
+						)}
+					</StyledInputAndErrorContainer>
+
+					<StyledBidButton
+						//disabled={!IS_BID_POSSIBLE}
+						onClick={updateCurrentPrice}
+					>
+						Bid
+					</StyledBidButton>
+				</>
+			)}
+		</StyledHomePageContainer>
 	);
 };
 
