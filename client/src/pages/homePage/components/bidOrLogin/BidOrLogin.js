@@ -24,16 +24,14 @@ const BidOrLogin = ({ setItem, newBidValue, item }) => {
 
 	return (
 		<>
-			{USER_IS_LOGGED && (
+			{USER_IS_LOGGED ? (
 				<StyledBidButton
 					disabled={!IS_BID_POSSIBLE}
 					onClick={updateCurrentPrice}
 				>
 					Bid
 				</StyledBidButton>
-			)}
-
-			{!USER_IS_LOGGED && (
+			) : (
 				<StyledBidButton onClick={() => navigate(RotuesPath.LOGIN)}>
 					Log in
 				</StyledBidButton>

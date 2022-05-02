@@ -25,8 +25,8 @@ const HomePage = () => {
 	const [newBidValue, setNewBid] = useState(0);
 
 	const user = useUserContext();
-	const userName = user.user;
-	const USER_IS_NOT_LOGGED = Boolean(userName) === false;
+	const ITEM_IS_NOT_LISTED = Boolean(item.name) === false;
+	const USER_IS_NOT_LOGGED = Boolean(user.user) === false;
 	const IS_BID_POSSIBLE = newBidValue && newBidValue > item.current_price;
 
 	useEffect(() => {
@@ -40,11 +40,13 @@ const HomePage = () => {
 		setNewBid(item.current_price + 1);
 	}, [item.current_price]);
 
+	console.log(item, 'item');
+
 	return (
 		<StyledHomePageContainer>
-			{!item && <NoItemListed />}
-
-			{item && (
+			{ITEM_IS_NOT_LISTED ? (
+				<NoItemListed />
+			) : (
 				<>
 					<CurrentItem item={item} />
 
