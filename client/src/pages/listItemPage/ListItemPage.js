@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
 	StyledListItemPageContainer,
 	StyledListItemButton
 } from './ListItemPageStyles';
-
+import Title from '../../components/title/Title';
 import ListItemPageApi from './ListItemPageApi';
-import { useNavigate } from 'react-router-dom';
-
 import InputLabel from '../../components/inputLabel/InputLable';
 import RotuesPath from '../../shared/routes/RotuesPath';
 
 const ListItemPage = () => {
 	const [itemInfo, setItemInfo] = useState({ name: '', ask_price: undefined });
-	const buttonIsDisabled = !itemInfo.name || !itemInfo.ask_price;
 	const navigate = useNavigate();
+
+	const buttonIsDisabled = !itemInfo.name || !itemInfo.ask_price;
 
 	const handleOnChangeName = (e) => {
 		setItemInfo((prev) => ({
@@ -41,6 +41,7 @@ const ListItemPage = () => {
 
 	return (
 		<StyledListItemPageContainer>
+			<Title titleText={'List auction item'} />
 			<InputLabel
 				label="Item name"
 				value={itemInfo.name}

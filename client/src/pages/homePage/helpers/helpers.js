@@ -15,10 +15,11 @@ export const getLastItemCreated = (items) => {
 };
 
 export const handleSetItem = (data, setItem) => {
-	const { name, ask_price, current_price, id } = data;
+	const { name, ask_price, current_price, id, bider_name } = data;
 	setItem({
 		name,
 		ask_price,
+		bider_name,
 		current_price,
 		id
 	});

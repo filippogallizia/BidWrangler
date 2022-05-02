@@ -8,7 +8,7 @@ import { device } from './device';
 const GlobalStylesComponent = createGlobalStyle`
 html {
 	@media ${device.phone} { 
-		font-size: 8px;
+		font-size: 12px;
 	}
 
 	@media ${device.laptop} { 

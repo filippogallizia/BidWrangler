@@ -10,7 +10,7 @@ export const StyledLabelInputContainer = styled.div`
 export const StyledLabel = styled.label``;
 export const StyledInputItemName = styled.input`
 	width: 100%;
-	max-width: 11rem;
+	width: 12rem;
 	padding: 12px 20px;
 	border-style: solid;
 	border-color: ${(props) =>
@@ -20,7 +20,7 @@ export const StyledInputItemName = styled.input`
 	border-radius: ${(props) => props.theme.default.global.border.borderRadius.m};
 `;
 
-const InputLabel = ({ label, value, onChange, inputType }) => {
+const InputLabel = ({ label, value, onChange, inputType, disabled }) => {
 	return (
 		<StyledLabelInputContainer>
 			<StyledLabel htmlFor={label}>{label}</StyledLabel>
@@ -29,6 +29,7 @@ const InputLabel = ({ label, value, onChange, inputType }) => {
 				value={value}
 				onChange={onChange}
 				type={inputType ?? 'text'}
+				disabled={disabled}
 			/>
 		</StyledLabelInputContainer>
 	);

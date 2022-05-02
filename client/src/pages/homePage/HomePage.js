@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import CurrentItem from './components/CurrentItem/CurrentItem';
+import CurrentItem from './components/currentItem/CurrentItem';
 import {
-	StyledBidButton,
 	StyledHomePageContainer,
 	StyledErrorMessage,
 	StyledInputAndErrorContainer
 } from './HomePage.styles';
-import { updateUserInStorage } from '../loginPage/helpers/helpers';
-import HomePageApi from './HomePageApi';
 import { handleSetItem, fetchAndSetItem } from './helpers/helpers';
 import InputLabel from '../../components/inputLabel/InputLable';
 import { ItemsChannel } from '../../App';
+import { useUserContext } from '../../userContext/useUserContext';
+import BidOrLogin from './components/bidOrLogin/BidOrLogin';
+import NoItemListed from './components/noItemListed/NoItemListed';
+
+const initialItemState = {
+	name: '',
+	ask_price: '',
+	current_price: '',
+	bider_name: '',
+	id: undefined
+};
 
 const HomePage = () => {
-	const [item, setItem] = useState({
-		name: '',
-		ask_price: '',
-		current_price: '',
-		id: undefined
-	});
-	const [newBidValue, setNewBid] = useState();
+	const [item, setItem] = useState(initialItemState);
+	const [newBidValue, setNewBid] = useState(0);
 
+	const user = useUserContext();
+	const userName = user.user;
+	const USER_IS_NOT_LOGGED = Boolean(userName) === false;
 	const IS_BID_POSSIBLE = newBidValue && newBidValue > item.current_price;
 
 	useEffect(() => {
@@ -34,17 +40,9 @@ const HomePage = () => {
 		setNewBid(item.current_price + 1);
 	}, [item.current_price]);
 
-	const updateCurrentPrice = async () => {
-		try {
-			await HomePageApi.updateCurrentPrice(item.id, newBidValue);
-			fetchAndSetItem(setItem);
-			updateUserInStorage(undefined, newBidValue);
-		} catch (error) {}
-	};
-
 	return (
 		<StyledHomePageContainer>
-			{!item && 'no item yet'}
+			{!item && <NoItemListed />}
 
 			{item && (
 				<>
@@ -56,6 +54,7 @@ const HomePage = () => {
 							onChange={(e) => setNewBid(e.target.value)}
 							label="Insert your bid"
 							inputType="number"
+							disabled={USER_IS_NOT_LOGGED}
 						/>
 
 						{!IS_BID_POSSIBLE && (
@@ -65,12 +64,7 @@ const HomePage = () => {
 						)}
 					</StyledInputAndErrorContainer>
 
-					<StyledBidButton
-						//disabled={!IS_BID_POSSIBLE}
-						onClick={updateCurrentPrice}
-					>
-						Bid
-					</StyledBidButton>
+					<BidOrLogin setItem={setItem} newBidValue={newBidValue} item={item} />
 				</>
 			)}
 		</StyledHomePageContainer>

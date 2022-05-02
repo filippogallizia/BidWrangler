@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In order to get the rails application running run:
 
-Things you may want to cover:
+- gem install bundler
+- bundle install
+- rails s -p 3000 ( rails app must run on port 3000 to connect with FE )
 
-* Ruby version
+In order to get the react application running run:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- cd client
+- npm i
+- npm run start

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyledLoginContainer, StyledSignInButton } from './LoginPage.styles';
 import { setUserInStorage } from './helpers/helpers';
 
@@ -6,6 +6,7 @@ import InputLabel from '../../components/inputLabel/InputLable';
 import { useNavigate } from 'react-router-dom';
 import RotuesPath from '../../shared/routes/RotuesPath';
 import { useUserContext } from '../../userContext/useUserContext';
+import Title from '../../components/title/Title';
 
 const LoginPage = () => {
 	const [biderName, setBiderName] = useState('');
@@ -20,6 +21,8 @@ const LoginPage = () => {
 
 	return (
 		<StyledLoginContainer>
+			<Title titleText={'Login as bider'} />
+
 			<InputLabel
 				value={biderName}
 				onChange={(e) => setBiderName(e.target.value)}

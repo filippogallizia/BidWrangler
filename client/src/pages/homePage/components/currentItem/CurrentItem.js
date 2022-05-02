@@ -11,9 +11,15 @@ const CurrentItem = ({ item }) => {
 
 	return (
 		<StyledCurrentItemContainer>
-			<StyledItemName>{itemName.toUpperCase()}</StyledItemName>
+			<StyledItemName>{itemName && itemName.toUpperCase()}</StyledItemName>
 
 			<StyledInfosContainer>
+				{item.bider_name && (
+					<StyledInfoAndLabel>
+						Bidder: {item.bider_name.toUpperCase()}
+					</StyledInfoAndLabel>
+				)}
+
 				<StyledInfoAndLabel>
 					Current Price: {item.current_price}$
 				</StyledInfoAndLabel>

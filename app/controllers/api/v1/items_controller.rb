@@ -19,6 +19,8 @@ class API::V1::ItemsController < ApplicationController
 
     if @item.save
       render json: @item, status: :created
+      ActionCable.server.broadcast 'items_channel', @item
+
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -49,6 +51,6 @@ class API::V1::ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :ask_price, :current_price)
+      params.require(:item).permit(:name, :ask_price, :current_price, :bider_name)
     end
 end

@@ -13,7 +13,6 @@ export const getUserInStorage = () => {
 };
 
 export const updateUserInStorage = (name, lastBid) => {
-	console.log(lastBid);
 	const user = getUserInStorage();
 	StorageService.setItem(USER, {
 		name: name ?? user.name,
