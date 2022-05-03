@@ -1,5 +1,6 @@
 import LoginPageApi from '../../loginPage/LoginPageApi';
 import HomePageApi from '../HomePageApi';
+import { PAGE_STATUS } from '../HomePage';
 
 export const getLastItemCreated = (items) => {
 	return items.reduce((acc, cv) => {
@@ -25,15 +26,20 @@ export const handleSetItem = (data, setItem) => {
 	});
 };
 
-export const fetchAndSetItem = async (setItem) => {
+export const fetchAndSetItem = async (setItem, setPageStatus) => {
 	try {
 		const itemsResponse = await HomePageApi.getItem();
 
 		if (itemsResponse && itemsResponse.data && itemsResponse.data.length > 0) {
 			const lastItemCreated = getLastItemCreated(itemsResponse.data)[0];
 			handleSetItem(lastItemCreated, setItem);
+			setPageStatus && setPageStatus(PAGE_STATUS.ITEM);
+		} else {
+			setPageStatus && setPageStatus(PAGE_STATUS.NO_ITEM);
 		}
-	} catch (error) {}
+	} catch (error) {
+		setPageStatus && setPageStatus(PAGE_STATUS.NO_ITEM);
+	}
 };
 
 export const getAndSetUserHasBeenOverbidden = async (

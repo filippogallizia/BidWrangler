@@ -15,6 +15,7 @@ import { ItemsChannel } from '../../App';
 import { useUserContext } from '../../userContext/useUserContext';
 import BidOrLogin from './components/bidOrLogin/BidOrLogin';
 import NoItemListed from './components/noItemListed/NoItemListed';
+import Loading from '../../components/loading/Loading';
 
 const initialItemState = {
 	name: '',
@@ -24,18 +25,24 @@ const initialItemState = {
 	id: undefined
 };
 
+export const PAGE_STATUS = {
+	IS_LOADING: 'IS_LOADING',
+	NO_ITEM: 'NO_ITEM',
+	ITEM: 'ITEM'
+};
+
 const HomePage = () => {
 	const [item, setItem] = useState(initialItemState);
 	const [newBidValue, setNewBid] = useState(item.current_price + 1);
 	const { user } = useUserContext();
 	const [isUserOverbidden, setUserOverbidden] = useState(false);
+	const [pageStatus, setPageStatus] = useState(PAGE_STATUS.IS_LOADING);
 
-	const ITEM_IS_NOT_LISTED = Boolean(item.name) === false;
 	const USER_IS_NOT_LOGGED = Boolean(user.name) === false;
 	const IS_BID_POSSIBLE = newBidValue && newBidValue > item.current_price;
 
 	useEffect(() => {
-		fetchAndSetItem(setItem);
+		fetchAndSetItem(setItem, setPageStatus);
 
 		ItemsChannel.received = async (data) => {
 			// here we get the data from websocket
@@ -48,9 +55,11 @@ const HomePage = () => {
 
 	return (
 		<StyledHomePageContainer>
-			{ITEM_IS_NOT_LISTED ? (
-				<NoItemListed />
-			) : (
+			{pageStatus === PAGE_STATUS.IS_LOADING && <Loading />}
+
+			{pageStatus === PAGE_STATUS.NO_ITEM && <NoItemListed />}
+
+			{pageStatus === PAGE_STATUS.ITEM && (
 				<>
 					<CurrentItem item={item} />
 
