@@ -2,6 +2,7 @@
 
 In order to get the rails application running run:
 
+- cd api
 - bundle install
 - rake db:migrate
 - rails s -p 3000 ( rails app must run on port 3000 to connect with FE )

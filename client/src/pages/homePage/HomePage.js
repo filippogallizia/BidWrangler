@@ -40,8 +40,6 @@ const HomePage = () => {
 		setNewBid(item.current_price + 1);
 	}, [item.current_price]);
 
-	console.log(item, 'item');
-
 	return (
 		<StyledHomePageContainer>
 			{ITEM_IS_NOT_LISTED ? (
