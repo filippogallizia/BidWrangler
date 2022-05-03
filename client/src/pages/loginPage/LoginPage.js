@@ -7,16 +7,23 @@ import { useNavigate } from 'react-router-dom';
 import RotuesPath from '../../shared/routes/RotuesPath';
 import { useUserContext } from '../../userContext/useUserContext';
 import Title from '../../components/title/Title';
+import LoginPageApi from './LoginPageApi';
 
 const LoginPage = () => {
 	const [biderName, setBiderName] = useState('');
 	const navigate = useNavigate();
 	const { setUser } = useUserContext();
 
-	const handleSignIn = () => {
-		setUserInStorage(biderName);
-		setUser(biderName);
-		navigate(RotuesPath.HOME);
+	const handleSignIn = async () => {
+		try {
+			const response = await LoginPageApi.createUser(biderName);
+			const { name, id } = response.data;
+			setUser({ name: name, id: id });
+			setUserInStorage(name, id);
+			navigate(RotuesPath.HOME);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (

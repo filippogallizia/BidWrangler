@@ -16,11 +16,12 @@ export const ItemsChannel = cable.subscriptions.create('ItemsChannel', {
 });
 
 function App() {
-	const [user, setUser] = useState();
+	const [user, setUser] = useState({ name: '', id: undefined });
 
 	useEffect(() => {
 		const userInStorage = getUserInStorage();
-		userInStorage && setUser(userInStorage.name);
+		userInStorage &&
+			setUser({ name: userInStorage.name, id: userInStorage.id });
 	}, []);
 
 	return (

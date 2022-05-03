@@ -41,7 +41,7 @@ const NavBar = () => {
 				</StyledNavButton>
 			</StyledNavButtonsContainer>
 
-			{user && <StyledUserName>{user.toUpperCase()}</StyledUserName>}
+			{user && <StyledUserName>{user.name.toUpperCase()}</StyledUserName>}
 		</StyledNavBarContainer>
 	);
 };

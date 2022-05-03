@@ -1,5 +1,5 @@
+import LoginPageApi from '../../loginPage/LoginPageApi';
 import HomePageApi from '../HomePageApi';
-import { getUserInStorage } from '../../loginPage/helpers/helpers';
 
 export const getLastItemCreated = (items) => {
 	return items.reduce((acc, cv) => {
@@ -36,7 +36,20 @@ export const fetchAndSetItem = async (setItem) => {
 	} catch (error) {}
 };
 
-export const getAndSetUser = (setUser) => {
-	const user = getUserInStorage();
-	setUser(user);
+export const getAndSetUserHasBeenOverbidden = async (
+	userId,
+	current_price,
+	setUserOverbidden
+) => {
+	const usersResponse = await LoginPageApi.getUsers();
+	const users = usersResponse.data;
+	const currentUser = users.find((usr) => usr.id === userId);
+
+	if (
+		currentUser &&
+		currentUser.bid_value &&
+		currentUser.bid_value < current_price
+	) {
+		setUserOverbidden(true);
+	} else setUserOverbidden(false);
 };

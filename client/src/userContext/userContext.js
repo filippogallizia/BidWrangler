@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 const initialUser = {
-	name: '',
+	user: { name: '', id: undefined },
 	setUser: () => {}
 };
 
