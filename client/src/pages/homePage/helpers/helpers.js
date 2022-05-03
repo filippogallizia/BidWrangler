@@ -42,8 +42,9 @@ export const getAndSetUserHasBeenOverbidden = async (
 	setUserOverbidden
 ) => {
 	const usersResponse = await LoginPageApi.getUsers();
-	const users = usersResponse.data;
-	const currentUser = users.find((usr) => usr.id === userId);
+	const users = usersResponse && usersResponse.data;
+	const currentUser =
+		users.length > 0 && users.find((usr) => usr.id === userId);
 
 	if (
 		currentUser &&

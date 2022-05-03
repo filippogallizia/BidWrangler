@@ -18,12 +18,6 @@ export const ItemsChannel = cable.subscriptions.create('ItemsChannel', {
 function App() {
 	const [user, setUser] = useState({ name: '', id: undefined });
 
-	useEffect(() => {
-		const userInStorage = getUserInStorage();
-		userInStorage &&
-			setUser({ name: userInStorage.name, id: userInStorage.id });
-	}, []);
-
 	return (
 		<ErrorBoundary>
 			<UserContext.Provider value={{ user, setUser }}>

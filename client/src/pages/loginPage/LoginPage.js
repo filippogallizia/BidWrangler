@@ -19,11 +19,8 @@ const LoginPage = () => {
 			const response = await LoginPageApi.createUser(biderName);
 			const { name, id } = response.data;
 			setUser({ name: name, id: id });
-			setUserInStorage(name, id);
 			navigate(RotuesPath.HOME);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	};
 
 	return (
@@ -40,7 +37,7 @@ const LoginPage = () => {
 				onClick={handleSignIn}
 				disabled={biderName.length === 0}
 			>
-				SignIn
+				Sign In
 			</StyledSignInButton>
 		</StyledLoginContainer>
 	);

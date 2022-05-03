@@ -19,14 +19,14 @@ import NoItemListed from './components/noItemListed/NoItemListed';
 const initialItemState = {
 	name: '',
 	ask_price: '',
-	current_price: '',
+	current_price: 0,
 	bider_name: '',
 	id: undefined
 };
 
 const HomePage = () => {
 	const [item, setItem] = useState(initialItemState);
-	const [newBidValue, setNewBid] = useState(0);
+	const [newBidValue, setNewBid] = useState(item.current_price + 1);
 	const { user } = useUserContext();
 	const [isUserOverbidden, setUserOverbidden] = useState(false);
 
@@ -55,7 +55,11 @@ const HomePage = () => {
 					<CurrentItem item={item} />
 
 					<StyledInputAndErrorContainer>
-						{isUserOverbidden && <p>your bid has been overbidden</p>}
+						{isUserOverbidden && (
+							<StyledErrorMessage>
+								Your bid has been overbidden
+							</StyledErrorMessage>
+						)}
 						<InputLabel
 							value={newBidValue}
 							onChange={(e) => setNewBid(e.target.value)}

@@ -16,8 +16,8 @@ const BidOrLogin = ({ setItem, newBidValue, item, setNewBid }) => {
 
 	const updateCurrentPrice = async () => {
 		try {
-			await HomePageApi.updateCurrentPrice(item.id, newBidValue, user.user);
 			await LoginPageApi.updateUserBidValue(user.id, newBidValue);
+			await HomePageApi.updateCurrentPrice(item.id, newBidValue, user.name);
 			fetchAndSetItem(setItem);
 		} catch (error) {}
 	};

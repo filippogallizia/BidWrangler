@@ -10,7 +10,7 @@ import InputLabel from '../../components/inputLabel/InputLable';
 import RotuesPath from '../../shared/routes/RotuesPath';
 
 const ListItemPage = () => {
-	const [itemInfo, setItemInfo] = useState({ name: '', ask_price: undefined });
+	const [itemInfo, setItemInfo] = useState({ name: '', ask_price: 0 });
 	const navigate = useNavigate();
 
 	const buttonIsDisabled = !itemInfo.name || !itemInfo.ask_price;
